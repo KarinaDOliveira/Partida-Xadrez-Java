@@ -53,6 +53,10 @@ public class PartidaDeXadrez {
 		if (!tabuleiro.haUmaPeca(posicao)) {//negação, se a peça não existir na oriem deverá exibir o erro 
 			throw new XadrexExcecao("Não existe uma peça na oriem da posição!");
 		}
+		if (!tabuleiro.peca(posicao).haUmPossivelMovimento()) {
+			throw new XadrexExcecao("Não existe movimento possivel para peca escolida");
+			
+		}
 	}
 
 	
