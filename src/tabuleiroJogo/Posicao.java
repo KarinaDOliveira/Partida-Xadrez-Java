@@ -24,6 +24,11 @@ public class Posicao {
 		this.coluna = coluna;
 	}
 	
+	public void setValues(int linha, int coluna) {
+		this.linha = linha;
+		this.coluna = coluna;
+	}
+	
 	
 	//aplicação do toString objeto é a classe das superClasses
 	@Override //sobreposição 

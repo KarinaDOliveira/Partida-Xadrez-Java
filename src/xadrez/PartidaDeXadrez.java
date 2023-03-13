@@ -1,6 +1,8 @@
 package xadrez;
 
 
+import javax.transaction.xa.XAException;
+
 import tabuleiroJogo.Peca;
 import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
@@ -38,6 +40,7 @@ public class PartidaDeXadrez {
 		Posicao origem = posicaoOrigem.toPosicao();//convertendo na matriz
 		Posicao alvo = posicaoAlvo.toPosicao();
 		validacaoPosicaoOrigem(origem);//responsavel por validar a posição de origem
+		validacaoPosicaoAlvo(origem, alvo);
 		Peca capturaPeca = fazerMover(origem, alvo);
 		return (PecaDeXadrez)capturaPeca;
 	}
@@ -59,6 +62,12 @@ public class PartidaDeXadrez {
 		}
 	}
 
+		private void validacaoPosicaoAlvo(Posicao origem, Posicao alvo) {
+			if(!tabuleiro.peca(origem).possivelMovimento(alvo)) {
+				throw new XadrexExcecao("A peca escolida não pode se mover para o destino selecionado");
+				
+			}
+		}
 	
 	private void lugarNovaPeca(char coluna, int linha, PecaDeXadrez peca) {
 		tabuleiro.lugarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
