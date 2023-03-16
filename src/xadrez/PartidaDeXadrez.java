@@ -1,6 +1,9 @@
 package xadrez;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tabuleiroJogo.Peca;
 import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
@@ -13,6 +16,11 @@ public class PartidaDeXadrez {
 	private int turno;
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
+
+//criação de lista para armazenamento das peças que forem capturadas e para as peças contidas no tabuleiro
+	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+	private List<Peca> capturaDePecas = new ArrayList<>();
+	
 
 
 	//tamanho do tabuleiro de xadrez 8 x 8
@@ -70,6 +78,13 @@ public class PartidaDeXadrez {
 		Peca p = tabuleiro.removePeca(origem);
 		Peca capturaPeca = tabuleiro.removePeca(alvo);
 		tabuleiro.lugarPeca(p, alvo);
+		//se a captura de peça for diferente de nulo remover peça do tabuleiro e adicionar na lista de peças capturadas
+		
+		if (capturaPeca != null) {
+			pecasNoTabuleiro.remove(capturaPeca);
+			capturaDePecas.add(capturaPeca);
+		}
+		
 		return capturaPeca;
 	}
 	
@@ -105,6 +120,7 @@ public class PartidaDeXadrez {
 	
 	private void lugarNovaPeca(char coluna, int linha, PecaDeXadrez peca) {
 		tabuleiro.lugarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
+		pecasNoTabuleiro.add(peca); //incluido para deixar a peça do oponete no lugar da peça capturada 
 		
 	}
 
