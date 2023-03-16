@@ -1,8 +1,6 @@
 package xadrez;
 
 
-import javax.transaction.xa.XAException;
-
 import tabuleiroJogo.Peca;
 import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
@@ -33,7 +31,13 @@ public class PartidaDeXadrez {
 	 	   return mat;
 	 }
 	
-	
+	//declaração dos movimentos possiveis dentro da matriz booleana 
+	public boolean [][] possiveisMovimentos(PosicaoXadrez posicaoOrigem) {
+		Posicao posicao = posicaoOrigem.toPosicao();
+		validacaoPosicaoOrigem(posicao);
+		return tabuleiro.peca(posicao).possiveisMovimentos();
+		
+	}
 	//performace do movimento criando a posição origem e a posição alvo de destino
 	public PecaDeXadrez performaceDoMovimento(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoAlvo) {
 		//criando uma variavel para a posição instanciando a variavel do objeto 

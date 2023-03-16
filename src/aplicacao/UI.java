@@ -61,7 +61,21 @@ public class UI {
 			System.out.print(8 - i + " ");
 			
 		    for(int j=0; j<pecas.length; j++) {
-			imprimirPeca(pecas[i][j]);
+			imprimirPeca(pecas[i][j], false);
+		}
+		    System.out.println();
+		}
+		
+		System.out.println("  a b c d e f g h");
+		    
+	}
+	
+	public static void imprimirTabuleiro(PecaDeXadrez[][] pecas, boolean[][] possiveisMovimentos) {
+			for (int i=0; i<pecas.length; i++) {
+			System.out.print(8 - i + " ");
+			
+		    for(int j=0; j<pecas.length; j++) {
+			imprimirPeca(pecas[i][j], possiveisMovimentos[i][j]);
 		}
 		    System.out.println();
 		}
@@ -70,10 +84,13 @@ public class UI {
 		    
 	}
 
-	//metodo para colocar o - no tabuleio, caso não tenha peça na posição da matriz
-	private static void imprimirPeca(PecaDeXadrez peca) {
+	//metodo para colocar a cor do fundo para os movimentos possiveis 
+	private static void imprimirPeca(PecaDeXadrez peca, boolean fundoDaTela) {
+		if(fundoDaTela) {
+			System.out.print(ANSI_RED_BACKGROUND );
+		}
 		if (peca == null) {
-			System.out.print("-");
+			System.out.print("-" + ANSI_RESET);
 		}
 		 else {
 			 
