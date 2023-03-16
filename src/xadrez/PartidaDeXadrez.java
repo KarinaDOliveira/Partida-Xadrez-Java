@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.text.Position;
-
 import tabuleiroJogo.Peca;
 import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
@@ -105,7 +103,9 @@ public class PartidaDeXadrez {
 	}
 	
 	private void desfazMovimento(Posicao origem, Posicao alvo, Peca capturaPeca) {
-		Peca p = tabuleiro.removePeca(alvo);
+		//Peca p = tabuleiro.removePeca(alvo);
+		PecaDeXadrez p = (PecaDeXadrez)tabuleiro.removePeca(alvo);
+		p. decrementoContMovimento();
 		tabuleiro.lugarPeca(p, origem);
 
 		if (capturaPeca != null) {
@@ -116,7 +116,9 @@ public class PartidaDeXadrez {
 	}
 //metodo de fazer mover da posição origem para posição alvo
 	private Peca fazerMover(Posicao origem, Posicao alvo) {
-		Peca p = tabuleiro.removePeca(origem);
+		//Peca p = tabuleiro.removePeca(origem);
+		PecaDeXadrez p = (PecaDeXadrez)tabuleiro.removePeca(origem);
+		p.incrementoContMovimento();
 		Peca capturaPeca = tabuleiro.removePeca(alvo);
 		tabuleiro.lugarPeca(p, alvo);
 		//se a captura de peça for diferente de nulo remover peça do tabuleiro e adicionar na lista de peças capturadas
