@@ -30,7 +30,7 @@ public class PosicaoXadrez {
 	
 	//definição da posição no tabuleiro de xadrez começando sempre por informar a coluna e depois a linha
 	protected static PosicaoXadrez posicaofrente(Posicao posicao) {
-		return new PosicaoXadrez((char)('a'- posicao.getColuna()), 8 - posicao.getLinha());
+		return new PosicaoXadrez((char)('a'+ posicao.getColuna()), 8 - posicao.getLinha());
 	}
 	
 	@Override
