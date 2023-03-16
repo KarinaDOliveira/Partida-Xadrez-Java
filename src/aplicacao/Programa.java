@@ -23,7 +23,7 @@ public class Programa {
 			
 			
 			
-			while (true) {
+			while (!partidaDeXadrez.getCheckMate()) {
 				try {
 					UI.clearScreen();
 					//UI.imprimirTabuleiro(partidaDeXadrez.getPecas()); 
@@ -57,6 +57,8 @@ public class Programa {
 					sc.nextLine();//o programa vai aguardar entrar com o enter 
 				}
 			}
+			UI.clearScreen();
+			UI.imprimirPartida(partidaDeXadrez, captura);
 		}
 
 					
