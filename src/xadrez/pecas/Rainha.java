@@ -1,5 +1,7 @@
 package xadrez.pecas;
 
+import javax.swing.text.Position;
+
 import tabuleiroJogo.Posicao;
 import tabuleiroJogo.Tabuleiro;
 import xadrez.Cor;
@@ -18,57 +20,86 @@ public class Rainha extends PecaDeXadrez {
 		return "é";
 	}
 	
-	private boolean podeMover(Posicao posicao) {
-		PecaDeXadrez p = (PecaDeXadrez)getTabuleiro().peca(posicao);
-		return p == null || p.getCor() != getCor();
-	}
 	@Override
 	public boolean[][] possiveisMovimentos() {
 		boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+
+		Posicao p = new Posicao(0, 0);
 		
-			Posicao p = new Posicao(0, 0);
-			
-		p.setValues(posicao.getLinha() -1, posicao.getColuna() -2);
-		if (getTabuleiro().posicaoExistente(p) && podeMover(p)) {
+		p.setValues(posicao.getLinha() - 1, posicao.getColuna());
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setLinha(p.getLinha() - 1);
+		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
 			mat[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		p.setValues(posicao.getLinha() - 2, posicao.getColuna() - 1);
-		if(getTabuleiro().posicaoExistente(p) && podeMover(p)) {
-			mat [p.getLinha()][p.getColuna()] = true; 
+		p.setValues(posicao.getLinha(), posicao.getColuna() - 1);
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setColuna(p.getColuna() - 1);
+		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		p.setValues(posicao.getLinha() - 2, posicao.getColuna() + 1);
-		if(getTabuleiro().posicaoExistente(p) && podeMover(p)) {
-			mat [p.getLinha()][p.getColuna()] = true; 
+		p.setValues(posicao.getLinha(), posicao.getColuna() + 1);
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setColuna(p.getColuna() + 1);
+		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		p.setValues(posicao.getLinha() - 1, posicao.getColuna() + 2);
-		if(getTabuleiro().posicaoExistente(p) && podeMover(p)) {
-			mat [p.getLinha()][p.getColuna()] = true; 
+		p.setValues(posicao.getLinha() + 1, posicao.getColuna());
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setLinha(p.getLinha() + 1);
+		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		p.setValues(posicao.getLinha() + 1, posicao.getColuna() + 2);
-		if(getTabuleiro().posicaoExistente(p) && podeMover(p)) {
-			mat [p.getLinha()][p.getColuna()] = true; 
+		p.setValues(posicao.getLinha() - 1, posicao.getColuna()- 1);
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setValues(p.getLinha() - 1, p.getColuna() - 1);
+		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		p.setValues(posicao.getLinha() + 2, posicao.getColuna() + 1);
-		if(getTabuleiro().posicaoExistente(p) && podeMover(p)) {
-			mat [p.getLinha()][p.getColuna()] = true; 
+		p.setValues(posicao.getLinha() - 1, posicao.getColuna()+ 1);
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setValues(p.getLinha() - 1, p.getColuna() + 1);
+		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		p.setValues(posicao.getLinha() + 2, posicao.getColuna() - 1);
-		if(getTabuleiro().posicaoExistente(p) && podeMover(p)) {
-			mat [p.getLinha()][p.getColuna()] = true; 
+		p.setValues(posicao.getLinha() + 1, posicao.getColuna() + 1);
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setValues(p.getLinha() + 1, p.getColuna() + 1);
+		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		p.setValues(posicao.getLinha() + 1, posicao.getColuna() - 2);
-		if(getTabuleiro().posicaoExistente(p) && podeMover(p)) {
-			mat [p.getLinha()][p.getColuna()] = true; 
+		p.setValues(posicao.getLinha() + 1, posicao.getColuna()- 1);
+		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().haUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setValues(p.getLinha() + 1, p.getColuna() - 1);
 		}
+		if (getTabuleiro().posicaoExistente(p) && haUmaPecaDoOpnente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+		}
+		
 		
 		return mat;
-	}
-
+	}	
+	
 }
