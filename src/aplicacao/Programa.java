@@ -50,13 +50,15 @@ public class Programa {
 						
 						if (partidaDeXadrez.getPromocao() != null) {
 							System.out.print("Inserir peca para promocao (B/C/R/é): ");
-							String type = sc.nextLine();
+							String type = sc.nextLine().toUpperCase();
+							while (!type.equals("B") && !type.equals("C") && !type.equals("R") & !type.equals("é")) {
+								System.out.print("Valor invalido insira o cod correto (B/N/R/Q): ");
+								type = sc.nextLine().toUpperCase();
+							}
 							partidaDeXadrez.substiruirPecaPromovida(type);
 						}
-						
-						
-						
-						
+											
+												
 					}
 				catch(XadrexExcecao e) {
 					System.out.println(e.getMessage());
